@@ -1,1 +1,23 @@
+# Final reproducibility summary
 
+reproducibility = {
+    "feature_window": "February 2026",
+    "outcome_window": "March 2026",
+    "label_threshold": LABEL_THRESHOLD,
+    "features": feature_cols,
+    "model": "Logistic Regression",
+    "train_rows": len(X_train),
+    "test_rows": len(X_test),
+    "train_clients": groups_train.nunique(),
+    "test_clients": groups_test.nunique(),
+    "client_overlap": len(
+        set(groups_train.unique()).intersection(
+            set(groups_test.unique())
+        )
+    ),
+    "test_positive_rate": round(float(y_test.mean()), 4),
+    "random_state": 42
+}
+
+for key, value in reproducibility.items():
+    print(f"{key}: {value}")
